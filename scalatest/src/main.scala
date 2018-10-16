@@ -6,7 +6,45 @@ import scala.collection.mutable.Set
 object HelloWorld {
   def main(args: Array[String]): Unit = {
 
-    /*Map*/
+
+    def widthOfLength(s: String) = s.length.toString.length
+
+
+    val lines = Source.fromFile("test.txt").getLines.toList
+    val longestLine = lines.reduceLeft(
+      (a, b) => if (a.length > b.length) a else b
+    )
+    val maxWidth = widthOfLength(longestLine)
+    for (line <- lines){
+      val numSpaces = maxWidth - widthOfLength( line)
+      val padding = " " * numSpaces
+      print(padding + line.length +" | "+ line)
+    }
+
+
+    /*IO*/
+    for(line <- Source.fromFile("test.txt").getLines()){
+      println(line.length + " " + line)
+    }
+    /*Reader*/
+    Source.fromFile("test.txt").foreach(
+      print
+    )
+    val padding = " " * 2
+    /*writer*/
+    val write = new PrintWriter(new File("test.txt"))
+    write.write("ceshi数据")
+    write.close()
+
+    /*Reader*/
+    Source.fromFile("test.txt").foreach(
+      println
+    )
+
+    /*function*/
+    def   fromArgs(agrs : Array[String]) = agrs.mkString("\n")
+    println(fromArgs(Array("12", "1234")))
+    /*Map */
     val mutMap = scala.collection.mutable.Map(1->"11",2->"22")
 
     mutMap += (2->"33")
@@ -56,20 +94,6 @@ object HelloWorld {
     var map = new util.HashMap[Int , String]()
     map.put(2,"67")
 
-    /*Reader*/
-    Source.fromFile("test.txt").foreach(
-      print
-    )
-
-    /*writer*/
-    val write = new PrintWriter(new File("test.txt"))
-    write.write("ceshi数据")
-    write.close()
-
-    /*Reader*/
-    Source.fromFile("test.txt").foreach(
-      println
-    )
 
 
   }
