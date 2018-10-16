@@ -33,7 +33,7 @@ object HelloWorld {
 
     var list3 = list ::: list2
     var list4 = 1 :: list3
-      var list5 = 1::Nil::3::Nil
+    var list5 = 1::Nil::3::Nil
     /*数组*/
     var arr = new Array[String](2)
     arr(0) = "tre"
