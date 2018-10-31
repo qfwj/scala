@@ -3,14 +3,80 @@ import java.util
 
 import scala.io.Source
 import scala.collection.mutable.Set
+
+class  TestField{
+  var acc = 1
+
+  private var priField = 0
+ /*标准写法*/
+ def testPriFieldStan(aa :Int):Unit = {
+   priField  += aa
+ }
+  def testPriFieldIntStan(aa :Int):Int ={
+    return priField + aa
+  }
+  /*简便写法*/
+  def testPriField(aa :Int):Unit = priField  += aa
+  def testPriFieldInt(aa :Int):Int = priField + aa
+
+
+  def testPriFieldConsi(aa :Int) = priField  += aa
+  def testPriFieldIntConsi(aa :Int) = priField + aa
+  def testStrig() = "hahah"
+  def testStringCons() :Unit = "hahahh"
+  def testStrigUnit() {"hahah"}
+  def testStrigequal() = {
+    "hahah"
+    2 + 2
+    priField  += 2
+  }
+
+}
+
+
+
 object HelloWorld {
+  var $$ds = 2
   def main(args: Array[String]): Unit = {
+   val $ = new Rational(2,3)
+   val test_ :Int= 12
+   val rational1 = new Rational(2,3)
+   val rational2 = new Rational(4,6)
+   val rational3 = rational1 + rational2
+    /*Symbol*/
+   val symbol = 'testSym
+   val symbol1 = Symbol("testSym")
+    println(symbol == symbol1)
+    println('testSym == symbol1)
+    /**/
+    TestCompanionObject.test
+    TestCompanionObject.out(2)
+
+    var calssField1 =new TestField
+    calssField1.acc =2
+    var calssField2 =new TestField
+    calssField2.acc =3
+
+    print(calssField2.testStrig())
+    print(calssField2.testStrigUnit())
+    print(calssField2.testStringCons())
+    print(calssField2.testStrigequal())
+
+    print(calssField2.testPriField(2))
+    print(calssField2.testPriFieldConsi(2))
+    print(calssField2.testPriFieldStan(2))
+    print(calssField2.testPriFieldInt(2))
+    print(calssField2.testPriFieldIntStan(2))
+    print(calssField2.testPriFieldIntConsi(2))
 
 
+
+
+    TestCompanionObject.out(1);
     def widthOfLength(s: String) = s.length.toString.length
 
 
-    val lines = Source.fromFile("test.txt").getLines.toList
+/*    val lines = Source.fromFile("test.txt").getLines.toList
     val longestLine = lines.reduceLeft(
       (a, b) => if (a.length > b.length) a else b
     )
@@ -19,7 +85,7 @@ object HelloWorld {
       val numSpaces = maxWidth - widthOfLength( line)
       val padding = " " * numSpaces
       print(padding + line.length +" | "+ line)
-    }
+    }*/
 
 
     /*IO*/
@@ -94,7 +160,7 @@ object HelloWorld {
     var map = new util.HashMap[Int , String]()
     map.put(2,"67")
 
-
-
   }
 }
+
+
