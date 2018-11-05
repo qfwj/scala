@@ -36,14 +36,51 @@ class  TestField{
 
 
 object HelloWorld {
-  var $$ds = 2
+
+
+  def  sum = (_:Int) + (_:Int) +(_:Int)
+ def  sum2(a:Int, b:Int, c:Int) = a + b + c
   def main(args: Array[String]): Unit = {
-   val $ = new Rational(2,3)
-   val test_ :Int= 12
-   val rational1 = new Rational(2,3)
-   val rational2 = new Rational(4,6)
-   val rational3 = rational1 + rational2
-    /*Symbol*/
+   /*closure*/
+   var more = 2
+   val testClosure = (_:Int) + more
+   def close(x:Int) = x + more
+   val testClosure2 = close _
+   println(testClosure(22))
+   println(testClosure2(1))
+   more = 4
+   println(testClosure(22))
+   println(testClosure2(1))
+   /*partitial apply function*/
+   val partifunc = sum(2, _:Int, 3)
+   println(partifunc(3))
+   val partifunc2 = sum2(2, _:Int, 3)
+   println(partifunc2(3))
+
+   /*下划线测试*/
+   val f = (_: Int) + (_: Int) //类型推断
+   f(3,4)
+   val listss = 2::3::4::Nil
+   val reList = listss.filter(_>2)
+   /*match*/
+   val matchtest = "hahha"
+   matchtest match {
+    case "hahha" => println("asas")
+    case _ => println("default")
+   }
+
+
+   /*iteration*/
+   for ( value <- 1 to 4 if value != 3){
+    println(value)
+   }
+
+ val $ = new Rational(2,3)
+ val test_ :Int= 12
+ val rational1 = new Rational(2,3)
+ val rational2 = new Rational(4,6)
+ val rational3 = rational1 + rational2
+ /*Symbol*/
    val symbol = 'testSym
    val symbol1 = Symbol("testSym")
     println(symbol == symbol1)

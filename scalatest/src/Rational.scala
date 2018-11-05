@@ -1,5 +1,8 @@
 
 class Rational(n:Int, d: Int) {
+
+
+
   println("tees3434")
   private  var g = gcd(d.abs,n.abs)
   val nn = n / g
