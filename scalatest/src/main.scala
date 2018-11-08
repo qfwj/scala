@@ -41,6 +41,63 @@ object HelloWorld {
   def  sum = (_:Int) + (_:Int) +(_:Int)
  def  sum2(a:Int, b:Int, c:Int) = a + b + c
   def main(args: Array[String]): Unit = {
+   /*new control loan pattern 贷出模式*/
+   def testFunction(op:Int=>Int, x:Int) = op(x)
+   val testFun = testFunction((_+ 2), 2)
+   val testFun2 = testFunction(_+ 3, 2)
+
+   def loanPattern(file:File, op:PrintWriter =>Unit): Unit ={
+    val write = new PrintWriter(file)
+     try{
+      op(write)
+     } finally {
+       write.close() //资源由我提供 、关闭 客户端只负责用
+     }
+   }
+   val testLoan = loanPattern(new File("data.txt"), w => w.println("不是的吧"))
+
+   /*curry*/
+   def testcurry(x:Int)(y:Int) =x + y
+   val testcurry1 = testcurry(2)_
+
+   /*test high order*/
+   val listHigh = List("we","vfded", "wewded")
+   var sdsd =  listHigh.exists(_.endsWith("ded"))
+   def highOrderList(list:List[String]) = ( term:String, matcher:(String, String) => Boolean) => {
+    for( tem <- list; if matcher(tem, term))
+     yield tem
+   }
+   def testhginew = highOrderList(listHigh)
+   var ss = testhginew("ded", _.endsWith(_))
+
+
+   def highOrder( term:String, matcher:(String, String) => Boolean) = {
+     for( tem <- listHigh; if matcher(tem, term))
+      yield tem
+   }
+   def testEnd(query:String) = highOrder(query, _.endsWith(_))
+   def testStart(query:String) = highOrder(query, _.startsWith(_))
+   /*test tail recursion*/
+   var a  = 1
+   var b = 1
+   var n = 10
+   while(n > 2){
+    val tem = b
+    b = a +b
+    a = tem
+    n  = n -1
+    print(b + ",")
+   }
+   println()
+   def fibonacci(a :Int, b :Int, n:Int):Int = {
+    if(n == 0) b
+    else {
+     print(b + ",")
+     fibonacci(b, a + b, n -1)
+    }
+   }
+
+   val testFibo = fibonacci(1,1,10)
    /*closure*/
    var more = 2
    val testClosure = (_:Int) + more
