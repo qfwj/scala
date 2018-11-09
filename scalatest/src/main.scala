@@ -40,13 +40,15 @@ object HelloWorld {
 
   def  sum = (_:Int) + (_:Int) +(_:Int)
  def  sum2(a:Int, b:Int, c:Int) = a + b + c
+
   def main(args: Array[String]): Unit = {
+
    /*new control loan pattern 贷出模式*/
    def testFunction(op:Int=>Int, x:Int) = op(x)
    val testFun = testFunction((_+ 2), 2)
    val testFun2 = testFunction(_+ 3, 2)
 
-   def loanPattern(file:File, op:PrintWriter =>Unit): Unit ={
+   def loanPattern(file:File)(op:PrintWriter =>Unit) {  //  def loanPattern(file:File, op:PrintWriter =>Unit) {
     val write = new PrintWriter(file)
      try{
       op(write)
@@ -54,7 +56,11 @@ object HelloWorld {
        write.close() //资源由我提供 、关闭 客户端只负责用
      }
    }
-   val testLoan = loanPattern(new File("data.txt"), w => w.println("不是的吧"))
+    /*花括号 括号测试*/
+   val testLoan = loanPattern{new File("data.txt")}{ w => w.println("不是sds的bb吧")}  // val testLoan = loanPattern(new File("data.txt"), w => w.println("不是sds的bb吧"))
+
+
+
 
    /*curry*/
    def testcurry(x:Int)(y:Int) =x + y
