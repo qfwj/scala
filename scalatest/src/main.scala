@@ -2,7 +2,7 @@ import java.io.{File, PrintWriter}
 import java.util
 
 import scala.io.Source
-import scala.collection.mutable.Set
+import testTrait.BaseIntQueue
 
 class  TestField{
   var acc = 1
@@ -38,10 +38,14 @@ class  TestField{
 object HelloWorld {
 
 
+
+  def divide(x:Int, y:Int):Int = if (y != 0) x/y else sys.error("sds")
+
   def  sum = (_:Int) + (_:Int) +(_:Int)
  def  sum2(a:Int, b:Int, c:Int) = a + b + c
 
   def main(args: Array[String]): Unit = {
+    /*test Trait*/
 
    /*new control loan pattern 贷出模式*/
    def testFunction(op:Int=>Int, x:Int) = op(x)
