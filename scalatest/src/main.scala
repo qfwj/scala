@@ -110,7 +110,13 @@ object HelloWorld {
 
     List(1, 2, 3) ::: List(4)
 
+    testList map (_ * 2)
 
+    List.range(1, 5).map( i => List.range(1, i).map(j => (i, j)))
+    List.range(1, 5).flatMap( i => List.range(1, i).map(j => (i, j)))
+
+    def sum(xs: List[Int]): Int = (0 /: xs) (_ + _) //元素相加
+    def sum(xs: List[Int]): Int = (1 /: xs) (_ * _) //元素相乘
     /*test case match */
     val second: PartialFunction[List[Int], Int] = {
       case x :: y :: _ => y
