@@ -3,6 +3,8 @@ import java.util
 
 import scala.io.Source
 import testTrait._
+import testTrait.package0.package11.TestPackage
+
 
 class TestField {
   var acc = 1
@@ -44,8 +46,34 @@ class TestField {
 
 }
 
+sealed abstract class Expr
+
+case class Number(num: Double) extends Expr
+
+case class UpOp(op: String, vars: Expr) extends Expr
+
+case class BinOp(op: String, left: Expr, right: Expr) extends Expr
+
+case class Var(aa: String) extends Expr
+
 
 object HelloWorld {
+
+
+  def simplfyAll(expr: Expr): Expr = expr match {
+
+    case UpOp("-", UpOp("-", e)) => simplfyAll(e)
+    case BinOp("+", Number(0), e) => simplfyAll(e)
+    case BinOp("+", e, Number(0)) => simplfyAll(e)
+    case BinOp("-", e, Number(0)) => simplfyAll(e)
+    case BinOp("*", e, Number(1)) => simplfyAll(e)
+    case BinOp("*", Number(1), e) => simplfyAll(e)
+    case BinOp(op, l, r) => BinOp(op, simplfyAll(l), simplfyAll(r))
+    case _ => expr
+  }
+
+
+  /*test */
 
 
   def divide(x: Int, y: Int): Int = if (y != 0) x / y else sys.error("sds")
@@ -54,13 +82,63 @@ object HelloWorld {
 
   def sum2(a: Int, b: Int, c: Int) = a + b + c
 
+  def listInsert(x: Int, y: List[Int]): List[Int] = {
+    if (y.isEmpty || x >= y.head) x :: y
+    else y.head :: listInsert(x, y.tail)
+  }
+
+
+  def mSort[T](less: (T, T) => Boolean,x: List[T]) :List[T] = {
+    def merge(xs: List[T], ys: List[T]): List[T] = (xs, ys) match {
+      case (Nil, _) => ys
+      case (_, Nil) => xs
+      case (hx :: tx, hy :: ty) => if ( less(hx , hy)) hx :: merge(tx, ys) else hy :: merge(xs, ty)
+    }
+
+    val n = x.length /2
+    if(n ==0 ) x
+    else {
+      val(tmpx, tmpy) =  x.splitAt(n)
+      merge(mSort(less, tmpx), mSort(less, tmpy))
+    }
+
+  }
+
   def main(args: Array[String]): Unit = {
+    /*test List*/
+    val testList: List[Int] = 1 :: 2 :: 3 :: Nil
+
+    List(1, 2, 3) ::: List(4)
+
+
+    /*test case match */
+    val second: PartialFunction[List[Int], Int] = {
+      case x :: y :: _ => y
+    }
+    /*先进行检测*/
+    second.isDefinedAt(List(1)) //false
+
+    val testOptin: Option[Int] => Int = {
+      case Some(x) => x
+      case None => 0
+    }
+    testOptin(Option.empty)
+    PartialFunction
+    /*Patterns everywhere*/
+    val (age, name) = ("zh", 12)
+    println(age, name)
+
+    for ((country, capital) <- Map("china" -> "bejing", "Japan" -> "toko")) {
+      println(country, capital)
+    }
+    /*test package*/
+    val testPackage11 = new TestPackage
+
+
     /*test Trait*/
     val testWith = new BaseIntQueue with IncrementTrait with DoubleTrait
     testWith.put(12)
     println(testWith.get()) //返回25 从右至左的执行
-
-
     val testTrait = new BaseIntQueue with DoubleTrait
     testTrait.put(12)
     println(testTrait.get())

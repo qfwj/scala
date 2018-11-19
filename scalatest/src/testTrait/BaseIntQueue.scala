@@ -4,7 +4,7 @@ import scala.collection.mutable.ArrayBuffer
 
 
 
-  class BaseIntQueue extends IntQueue {
+  class BaseIntQueue  extends IntQueue  {
 
     val queue: ArrayBuffer[Int] = new ArrayBuffer[Int]
 
