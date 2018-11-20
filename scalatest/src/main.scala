@@ -9,6 +9,15 @@ import scala.collection.mutable
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 import scala.collection.mutable.Queue
 
+class Time {
+  private[this] var h = 12
+  private[this] var m = 0
+  def hour: Int = h
+  def hour(x: Int) { h = x }
+  def minute: Int = m
+  def minute_=(x: Int) { m = x }
+}
+
 class TestField {
   var acc = 1
 
