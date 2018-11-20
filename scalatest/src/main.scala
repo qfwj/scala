@@ -5,6 +5,9 @@ import scala.io.Source
 import testTrait._
 import testTrait.package0.package11.TestPackage
 
+import scala.collection.mutable
+import scala.collection.mutable.{ArrayBuffer, ListBuffer}
+import scala.collection.mutable.Queue
 
 class TestField {
   var acc = 1
@@ -105,6 +108,20 @@ object HelloWorld {
   }
 
   def main(args: Array[String]): Unit = {
+    /*test Collections*/
+    val testTuple = (2,"qwq",'q')
+    testTuple._3
+
+    mutable.TreeSet(7,4,5)
+    val testStack = new mutable.Stack[Int]
+
+    val testQueue = new Queue[Int]
+    testQueue ++= List(12,12)
+
+    val testArrayBuffer = new ArrayBuffer[Int]
+    testArrayBuffer += 2
+    val testLisBuffrt = new ListBuffer[Int]
+    testLisBuffrt += 2
     /*test List*/
     val testList: List[Int] = 1 :: 2 :: 3 :: Nil
 
@@ -115,8 +132,9 @@ object HelloWorld {
     List.range(1, 5).map( i => List.range(1, i).map(j => (i, j)))
     List.range(1, 5).flatMap( i => List.range(1, i).map(j => (i, j)))
 
-    def sum(xs: List[Int]): Int = (0 /: xs) (_ + _) //元素相加
-    def sum(xs: List[Int]): Int = (1 /: xs) (_ * _) //元素相乘
+    def sum23(xs: List[Int]): Int = (0 /: xs) (_ + _) //元素相加
+    //def sum(xs: List[Int]): Int = (1 /: xs) (_ * _) //元素相乘
+
     /*test case match */
     val second: PartialFunction[List[Int], Int] = {
       case x :: y :: _ => y
