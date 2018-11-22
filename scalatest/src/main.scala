@@ -7,15 +7,22 @@ import testTrait.package0.package11.TestPackage
 
 import scala.collection.mutable
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
-import scala.collection.mutable.Queue
 
 class Time {
   private[this] var h = 12
   private[this] var m = 0
+
   def hour: Int = h
-  def hour(x: Int) { h = x }
+
+  def hour(x: Int) {
+    h = x
+  }
+
   def minute: Int = m
-  def minute_=(x: Int) { m = x }
+
+  def minute_=(x: Int) {
+    m = x
+  }
 }
 
 class TestField {
@@ -100,32 +107,43 @@ object HelloWorld {
   }
 
 
-  def mSort[T](less: (T, T) => Boolean,x: List[T]) :List[T] = {
+  def mSort[T](less: (T, T) => Boolean, x: List[T]): List[T] = {
     def merge(xs: List[T], ys: List[T]): List[T] = (xs, ys) match {
       case (Nil, _) => ys
       case (_, Nil) => xs
-      case (hx :: tx, hy :: ty) => if ( less(hx , hy)) hx :: merge(tx, ys) else hy :: merge(xs, ty)
+      case (hx :: tx, hy :: ty) => if (less(hx, hy)) hx :: merge(tx, ys) else hy :: merge(xs, ty)
     }
 
-    val n = x.length /2
-    if(n ==0 ) x
+    val n = x.length / 2
+    if (n == 0) x
     else {
-      val(tmpx, tmpy) =  x.splitAt(n)
+      val (tmpx, tmpy) = x.splitAt(n)
       merge(mSort(less, tmpx), mSort(less, tmpy))
     }
 
   }
+  class Publition(val title: String)
+  class Book(title :String) extends Publition(title)
 
+  object library {
+    val set:Set[Book] = Set(new Book("历史"), new Book("杂志"))
+    def printBookList( info:Book => AnyRef) {
+      set.foreach(f => println(info(f)))
+    }
+  }
   def main(args: Array[String]): Unit = {
+    /*test contravariance && covariance*/
+    val func = (book:Publition)=> book.title  //是info:Book => AnyRef的子类
+    library.printBookList(func)
     /*test Collections*/
-    val testTuple = (2,"qwq",'q')
+    val testTuple = (2, "qwq", 'q')
     testTuple._3
 
-    mutable.TreeSet(7,4,5)
+    mutable.TreeSet(7, 4, 5)
     val testStack = new mutable.Stack[Int]
 
-    val testQueue = new Queue[Int]
-    testQueue ++= List(12,12)
+    val testQueue = new mutable.Queue[Int]
+    testQueue ++= List(12, 12)
 
     val testArrayBuffer = new ArrayBuffer[Int]
     testArrayBuffer += 2
@@ -138,8 +156,8 @@ object HelloWorld {
 
     testList map (_ * 2)
 
-    List.range(1, 5).map( i => List.range(1, i).map(j => (i, j)))
-    List.range(1, 5).flatMap( i => List.range(1, i).map(j => (i, j)))
+    List.range(1, 5).map(i => List.range(1, i).map(j => (i, j)))
+    List.range(1, 5).flatMap(i => List.range(1, i).map(j => (i, j)))
 
     def sum23(xs: List[Int]): Int = (0 /: xs) (_ + _) //元素相加
     //def sum(xs: List[Int]): Int = (1 /: xs) (_ * _) //元素相乘
@@ -419,3 +437,37 @@ object HelloWorld {
 }
 
 
+trait Queue[T] {
+  def head: T
+
+  def tail: Queue[T]
+
+  def append(x: T): Queue[T]
+}
+
+object Queue {
+  def apply[T](xs: T*): Queue[T] =
+    new QueueImpl[T](xs.toList, Nil)
+
+  private class QueueImpl[T](
+                              private val leading: List[T],
+                              private val trailing: List[T]
+                            ) extends Queue[T] {
+    def mirror =
+      if (leading.isEmpty)
+        new QueueImpl(trailing.reverse, Nil)
+      else
+        this
+
+    def head: T = mirror.leading.head
+
+    def tail: QueueImpl[T] = {
+      val q = mirror
+      new QueueImpl(q.leading.tail, q.trailing)
+    }
+
+    def append(x: T) =
+      new QueueImpl(leading, x :: trailing)
+  }
+
+}
