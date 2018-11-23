@@ -132,6 +132,7 @@ object HelloWorld {
     }
   }
   def main(args: Array[String]): Unit = {
+
     /*test contravariance && covariance*/
     val func = (book:Publition)=> book.title  //是info:Book => AnyRef的子类
     library.printBookList(func)
