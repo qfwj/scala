@@ -1,11 +1,18 @@
 
 import JoesPrefs._
 
+
+
 object newmain {
 
   def main(args: Array[String]): Unit = {
+    val apples:List[Apple] = new Apple :: Nil
+    val fruits = new Orange :: apples
+    new son :: Nil
+    val supList:List[sup] = List(new sup, new sup)
+    val sons: son = new son
+    supList.::[sup](sons)
 
-    ::
     Greeter.greet("sds")
 
     val outer1 = new Outer
@@ -114,17 +121,10 @@ class TestAbstract extends Abstract {
 }
 
 
-abstract class Fruit {
-  val v: String // ‘v’ for value
-  def m: String // ‘m’ for method
-}
+abstract class Fruit
 
-abstract class Apple extends Fruit {
-  val v: String
-  val m: String // OK to override a ‘def’ with a ‘val’
-}
+abstract class Fruit1
 
-abstract class BadApple extends Fruit {
-  val v: String // ERROR: cannot override a ‘val’ with a ‘def’
-  var m: String
-}
+ class Apple extends Fruit
+
+ class Orange extends Fruit1
