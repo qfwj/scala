@@ -57,7 +57,7 @@ class TestField {
     "hahah"
   }
 
-  def testStrigequal() = {
+  def testStrigequal()  {
     "hahah"
     2 + 2
     priField += 2

@@ -1,0 +1,5 @@
+package testTrait
+
+trait We {
+
+}

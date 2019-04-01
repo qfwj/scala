@@ -3,7 +3,6 @@ import CovariantAndContravariantDemo._
 
 class sup
 
-class son extends sup
 
 class sonson
 
