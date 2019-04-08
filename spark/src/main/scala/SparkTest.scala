@@ -18,7 +18,7 @@ object SparkTest {
            .map(f=>f)*/
     val config = new SparkConf().setAppName("local-1553848694056").setMaster("local")
     val sc = new SparkContext(config)
-    Iterable
+
 
     val testComSeq = sc.parallelize(List(("qw","we are happy but not hungery"),("qa", "zhe ge shi jie shizenmela"),("qz", "chun tian laile ya  hahah "),("qa","wobuzhidaoaaaa ya zenmelll ")))
 
@@ -28,8 +28,9 @@ object SparkTest {
     })
     val dataDE = sc.parallelize(List(1,2,3))
     val dataDE2 = dataDE.map((_,1))
-    val de = dataDE2.mapPartitions
+    val de = dataDE2.mapPartitions()
 
+    Iterable
 
     val data1 = sc.parallelize(
       List(
@@ -48,6 +49,24 @@ object SparkTest {
     val flatmap = file.map(f => f.split(" "))
     val map = flatmap.flatMap(m => m).map((_, 1))
 
+
+    Set
+    /*
+    *
+    * 将RDD1与RDD2每个元素相映射 对应
+    * eg:rdd1 = (1,2) rdd2 =(a,b)
+    *
+    * result = (1,a),(1,b),(2,b),(3,b)
+    * */
+    map.cartesian(map)
+
+
+    /*cogroup  (c,(CompactBuffer(1, 11),CompactBuffer(2, 22))) 返回结果key，第一个CompactBuffer是data11的value Set，第二个CompactBuffer是data21的value set*/
+    val data111 = sc.parallelize(List(("a",2),("b",2),("b",22),("c",2),("b",22)))
+    val data21 = sc.parallelize(List(("a",2),("b",2),("b",22),("c",2),("c",22)))
+    data111.cogroup(data21)
+
+    /*join 将两个RDD中相同key的join到一起(key,(value, value))*/
     val joinMap = map.join(map)
     /*Sort*/
     map.sortBy(f => f._2)
@@ -73,43 +92,40 @@ object SparkTest {
         ("13909029812", (20170507, "http://www.51cto.com"))
       )
     )
-    data.aggregateByKey(scala.collection.mutable.Set[(Int, String)]())((set, item) => {
-      set += item
-    }, (set1, set2) => set1 union set2).mapValues(x => x.toIterable).collect
 
-    val aggregateByKey = map.aggregateByKey(0)((a: Int, b: Int) => a + b, (a: Int, b: Int) => a + b)
+      val data11 = sc.parallelize(List(("a", 1), ("b", 1), ("b", 11), ("c", 1)))
+      val data2 = sc.parallelize(List(("a", 2), ("b", 2), ("b", 22), ("c", 2), ("b", 22)))
+      data.aggregateByKey(scala.collection.mutable.Set[(Int, String)]())((set, item) => {
+        set += item
+      }, (set1, set2) => set1 union set2).mapValues(x => x.toIterable).collect
 
-
-    val group = map.groupByKey() // (k,v)v为Iterable
-
-    val groupEnd = group.map(f => (f._1, f._2.reduce((a, b) => a + b)))
-
-    flatmap.flatMap(m => m).map(n => (n, 1))
-      .reduceByKey((a, b) => a + b)
-      .foreach(println)
-
-    val reRdd = flatmap.repartition(12)
-    val partitionMap = file.mapPartitions(f => {
-      f.flatMap(m => m.split(" "))
-    }, true)
-    println("")
-
-    val pairs = flatmap.flatMap(m => m).map(n => (n, 1))
-    val sample = reRdd.sample(true, 0.2, 1).foreach(println)
-    val takeSample = reRdd.takeSample(true, 2).foreach(println)
+      val aggregateByKey = map.aggregateByKey(0)((a: Int, b: Int) => a + b, (a: Int, b: Int) => a + b)
 
 
-    // flatmap.intersection() //参数是
+      val group = map.groupByKey() // (k,v)v为Iterable
 
-    //new PairRDDFunctions(flatmap)
+      val groupEnd = group.map(f => (f._1, f._2.reduce((a, b) => a + b)))
 
-  }
+      flatmap.flatMap(m => m).map(n => (n, 1))
+        .reduceByKey((a, b) => a + b)
+        .foreach(println)
 
-  /*
-    def func(parma:List[String]): Iterator[(String,Int)]={
-      parma.map(m => (m,1)).collect()
+      val reRdd = flatmap.repartition(12)
+      val partitionMap = file.mapPartitions(f => {
+        f.flatMap(m => m.split(" "))
+      }, true)
+      println("")
+
+      val pairs = flatmap.flatMap(m => m).map(n => (n, 1))
+      val sample = reRdd.sample(true, 0.2, 1).foreach(println)
+      val takeSample = reRdd.takeSample(true, 2).foreach(println)
+
+
+
+
     }
-  */
+
+
 
 
 }
