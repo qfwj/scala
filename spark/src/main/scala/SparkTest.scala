@@ -18,14 +18,33 @@ object SparkTest {
            .map(f=>f)*/
     val config = new SparkConf().setAppName("local-1553848694056").setMaster("local")
     val sc = new SparkContext(config)
+    Iterable
+
+    val testComSeq = sc.parallelize(List(("qw","we are happy but not hungery"),("qa", "zhe ge shi jie shizenmela"),("qz", "chun tian laile ya  hahah "),("qa","wobuzhidaoaaaa ya zenmelll ")))
+
+    val  out = new ReportCardMetrics(0,0,0).calculateReportCardStatistics(testComSeq)
+    out.foreach(f=> {
+      println(f)
+    })
+    val dataDE = sc.parallelize(List(1,2,3))
+    val dataDE2 = dataDE.map((_,1))
+    val de = dataDE2.mapPartitions
 
 
+    val data1 = sc.parallelize(
+      List(
+        ("13909029812", ("20170507", "http://www.baidu.com")),
+        ("18089376778", ("20170401", "http://www.google.com")),
+        ("18089376778", ("20170508", "http://www.taobao.com")),
+        ("13909029812", ("20170507", "http://www.51cto.com"))
+      ),3
+    )
 
+    val partitions = data1.partitions
 
+    //val file = sc.textFile("/Users/finup/Desktop/样例.txt")
 
-
-
-    val file = sc.textFile("/Users/finup/Desktop/样例.txt")
+    val  file = sc.textFile("C:\\Users\\擎风\\Desktop\\qw.txt")
     val flatmap = file.map(f => f.split(" "))
     val map = flatmap.flatMap(m => m).map((_, 1))
 
@@ -48,13 +67,13 @@ object SparkTest {
      * */
     val data = sc.parallelize(
       List(
-        ("13909029812", ("20170507", "http://www.baidu.com")),
-        ("18089376778", ("20170401", "http://www.google.com")),
-        ("18089376778", ("20170508", "http://www.taobao.com")),
-        ("13909029812", ("20170507", "http://www.51cto.com"))
+        ("13909029812", (20170507, "http://www.baidu.com")),
+        ("18089376778", (20170401, "http://www.google.com")),
+        ("18089376778", (20170508, "http://www.taobao.com")),
+        ("13909029812", (20170507, "http://www.51cto.com"))
       )
     )
-    data.aggregateByKey(scala.collection.mutable.Set[(String, String)]())((set, item) => {
+    data.aggregateByKey(scala.collection.mutable.Set[(Int, String)]())((set, item) => {
       set += item
     }, (set1, set2) => set1 union set2).mapValues(x => x.toIterable).collect
 
