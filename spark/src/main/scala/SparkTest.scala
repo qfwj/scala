@@ -1,10 +1,15 @@
 import org.apache.spark.rdd.PairRDDFunctions
+import org.apache.spark.util.AccumulatorV2
 import org.apache.spark.{SparkConf, SparkContext}
 
 object SparkTest {
 
 
   def main(args: Array[String]): Unit = {
+
+
+
+
 
 
     /*     val list = List("we fd", "12 dsd","eew werwe", "wew wwew")
@@ -20,6 +25,34 @@ object SparkTest {
     val sc = new SparkContext(config)
 
 
+    /*
+    *
+    *
+    *
+    *
+    * subtract
+    * intersection RDD差值
+    * union
+    *
+    * Return an RDD with the elements from `this` that are not in `other`.
+    * 利用的map的key进行对比
+    * */
+
+    val a=List((1,2),2,3,4,4,4,4)
+    val b = List((1,1),3, 4)
+    val rddA = sc.parallelize(a)
+    val rddB = sc.parallelize(b)
+    val rddC = rddA.subtract(rddB).foreach(println)  //仅剩 1 2
+
+    val a1=Array(1,2,3,4,4,4,4)
+    val b1 = Array(3, 4)
+    val rddA1 = sc.parallelize(a1)
+    val rddB1 = sc.parallelize(b1)
+    val intersection = rddA1.intersection(rddB1) //去重后的交集
+    val subtraction = rddA1.subtract(rddB1) //去重后的差集
+    val union = intersection.union(subtraction) //去重后的union 合并;单独的union是不去重的
+
+
     val testComSeq = sc.parallelize(List(("qw","we are happy but not hungery"),("qa", "zhe ge shi jie shizenmela"),("qz", "chun tian laile ya  hahah "),("qa","wobuzhidaoaaaa ya zenmelll ")))
 
     val  out = new ReportCardMetrics(0,0,0).calculateReportCardStatistics(testComSeq)
@@ -28,9 +61,10 @@ object SparkTest {
     })
     val dataDE = sc.parallelize(List(1,2,3))
     val dataDE2 = dataDE.map((_,1))
-    val de = dataDE2.mapPartitions()
 
-    Iterable
+
+
+
 
     val data1 = sc.parallelize(
       List(
