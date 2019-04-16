@@ -1,4 +1,4 @@
-import org.apache.spark.rdd.PairRDDFunctions
+import org.apache.spark.rdd.{PairRDDFunctions, RDD}
 import org.apache.spark.util.AccumulatorV2
 import org.apache.spark.{SparkConf, SparkContext}
 
@@ -6,10 +6,6 @@ object SparkTest {
 
 
   def main(args: Array[String]): Unit = {
-
-
-
-
 
 
     /*     val list = List("we fd", "12 dsd","eew werwe", "wew wwew")
@@ -84,7 +80,7 @@ object SparkTest {
     val map = flatmap.flatMap(m => m).map((_, 1))
 
 
-    Set
+
     /*
     *
     * 将RDD1与RDD2每个元素相映射 对应
