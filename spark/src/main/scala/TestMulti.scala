@@ -16,7 +16,6 @@ object TestMulti {
     val data1 = sc.parallelize(List(1, 2, 3))
 
     val dataMap = data1.map((_, 1)).map(f => {
-
       Thread.sleep(500)
       (f._1, 2 * f._2)
     }).sortByKey()
