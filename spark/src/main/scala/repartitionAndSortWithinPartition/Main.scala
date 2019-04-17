@@ -1,6 +1,6 @@
 package repartitionAndSortWithinPartition
 
-import org.apache.spark.{Partitioner, SparkConf, SparkContext}
+import org.apache.spark.{RangePartitioner, SparkConf, SparkContext}
 
 /*
 * 遇到的问题：
@@ -18,7 +18,7 @@ object Main {
 
     val config = new SparkConf().setMaster("local").setAppName("TEST")
     val sc = new SparkContext(config)
-    val data = sc.parallelize(List((1,2),(1,3),(2,2)  ,(3,2)))
+    val data = sc.parallelize(List((1,2),(1,3),(2,2) ,(4,4) , (5,2),(3,2)))
     //implicit def ordering: Ordering[(Int, Int)] = Ordering.by(f=>(f._1 * -1,f._2))
 
 
@@ -36,13 +36,24 @@ object Main {
 
     val rdd121 = data.map(x => (new Student(x._1+"-"+x._2,x._1+x._2, "afds"),x._2))
     rdd121.foreach(println)
-    val rdd222 = rdd121.repartitionAndSortWithinPartitions(new PrimaryPartitioner(1))
+    /*
+    *
+    * 使用RangePartitioner保证最后真正完全有序
+    * */
+    val rdd222 = rdd121.repartitionAndSortWithinPartitions(new RangePartitioner(2,rdd121))
     rdd222.foreach(println)
+
+    /*
+    * 只能保证单个partition内有序
+    * age=8 4的在一个partition中
+    * */
+    val rdd333 = rdd121.repartitionAndSortWithinPartitions(new PrimaryPartitioner(2))
+
+    rdd333.foreach(println(_))
     println("sdfds")
 
 
     sc.stop()
-
 
 
   }
