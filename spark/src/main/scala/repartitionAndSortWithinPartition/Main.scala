@@ -2,11 +2,19 @@ package repartitionAndSortWithinPartition
 
 import org.apache.spark.{Partitioner, SparkConf, SparkContext}
 
-
+/*
+* 遇到的问题：
+* 1.Partitioner的getPartition方法导致的indexOut
+* 2.作为key的类，student需要实现Serializable
+* 3.implicit的Ordering主要针对PairRDD
+* 4.Ordering的实现 Ordering.by Ordering.on 都是实现compare方法
+*
+* */
 
 
 object Main {
   def main(args: Array[String]): Unit = {
+
 
     val config = new SparkConf().setMaster("local").setAppName("TEST")
     val sc = new SparkContext(config)
@@ -14,7 +22,12 @@ object Main {
     //implicit def ordering: Ordering[(Int, Int)] = Ordering.by(f=>(f._1 * -1,f._2))
 
 
-    /*主要针对Pair中的key进行排序*/
+    /*
+    * 主要针对Pair中的key进行排序
+    * 如果实现了Ordered的compare不用指定
+    *
+    *
+    * */
     implicit val my_self_Ordering = new Ordering[Student] {
       override def compare(a: Student, b: Student): Int = {
         b.age -  a.age
