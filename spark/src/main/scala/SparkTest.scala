@@ -40,6 +40,7 @@ object SparkTest {
     val rddB = sc.parallelize(b)
     val rddC = rddA.subtract(rddB).foreach(println)  //仅剩 1 2
 
+
     val a1=Array(1,2,3,4,4,4,4)
     val b1 = Array(3, 4)
     val rddA1 = sc.parallelize(a1)
@@ -70,6 +71,7 @@ object SparkTest {
         ("13909029812", ("20170507", "http://www.51cto.com"))
       ),3
     )
+
 
     val partitions = data1.partitions
 

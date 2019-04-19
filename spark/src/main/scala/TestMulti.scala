@@ -20,6 +20,10 @@ object TestMulti {
       (f._1, 2 * f._2)
     }).sortByKey()
     dataMap.persist()
+
+    dataMap.sortByKey().zipWithIndex()
+
+
   }
 
 }
