@@ -16,7 +16,7 @@ object StreamFileMain {
       * 1.textFileStream的参数是文件目录
       * 2.只是在目录中有新建文件时才会触发rdd action
       * 3.saveAsTextFiles在windows下使用会报错
-      * 4.乱码问题 直接在
+      * 4.乱码问题 直接设置文件编码格式为UTF-8
       */
     val lines = stream.textFileStream("C:\\Users\\nefu_\\Desktop\\test")
     val  nn = lines.flatMap((_.split(" "))).map((_,1)).reduceByKey((_+_))
