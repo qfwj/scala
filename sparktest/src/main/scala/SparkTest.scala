@@ -94,11 +94,11 @@ object SparkTest {
 
 
     /*cogroup  (c,(CompactBuffer(1, 11),CompactBuffer(2, 22))) 返回结果key，第一个CompactBuffer是data11的value Set，第二个CompactBuffer是data21的value set*/
-    val data111 = sc.parallelize(List(("a",2),("b",2),("b",22),("c",2),("b",22)))
+    val data111 = sc.parallelize(List(("aaa",2),("b",2),("b",22),("c",2),("b",22)))
     val data21 = sc.parallelize(List(("a",2),("b",2),("b",22),("c",2),("c",22)))
     data111.cogroup(data21)
 
-    /*join 将两个RDD中相同key的join到一起(key,(value, value))*/
+    /*join 将两个RDD中相同key的join到一起(key,(value, value))  key的交集 其他的不会出现在join结果中*/
     val joinMap = map.join(map)
     /*Sort*/
     map.sortBy(f => f._2)

@@ -20,6 +20,7 @@ object Main {
     val sc = new SparkContext(config)
     val data = sc.parallelize(List((1,2),(1,3),(2,2) ,(4,4) , (5,2),(3,2)))
     //implicit def ordering: Ordering[(Int, Int)] = Ordering.by(f=>(f._1 * -1,f._2))
+    val datawerwrewr = sc.parallelize(List(("sdasdasd",2),("sdasdasd",3),(2,2) ,(4,4) , (5,2),(3,2)))
 
 
     /*
