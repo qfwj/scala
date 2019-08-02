@@ -7,7 +7,7 @@ import org.apache.flink.api.common.accumulators.{Histogram, IntCounter}
 import org.apache.flink.api.common.functions.RichMapFunction
 import org.apache.flink.configuration.Configuration
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
-//import org.apache.flink.streaming.api.scala._
+import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.api.scala.extensions._
 
 /**
@@ -16,22 +16,23 @@ import org.apache.flink.streaming.api.scala.extensions._
   * @date 2019/7/26 11:17
   */
 object FlinkMain {
+
   def main(args: Array[String]): Unit = {
 
 
     val env = StreamExecutionEnvironment.createLocalEnvironment()
 
-    val testExten = env.fromElements(1, "2", "3", "4", "2")
-    val textParti = testExten /*.map{
-       _.toInt
-    }.*/
+    val testIteration = env.fromElements(1,2,3,4,5)
+   // testIteration.iterate()
 
-      .mapWith{
-      case x:String => x.toInt
-      case x:Int => x
-    } .reduceWith {
-      case x
-    }
+
+    /*test extension*/
+    val testExten = env.fromElements("1", "2", "3", "4", "2")
+    val textParti = testExten
+
+      .mapWith {
+        case x: String => (x, x.toInt)
+      }
     //mapWith(new MyPartialFunction)
 
     textParti.print()
@@ -137,11 +138,11 @@ trait Par extends Serializable
 class MyPartialFunction extends PartialFunction[Any, Int] with Par {
   override def apply(v1: Any): Int = v1 match {
     case a: String => a.toInt
-    case a:Int  => a
+    case a: Int => a
   }
 
   override def isDefinedAt(x: Any): Boolean = x match {
-    case _:String => true
+    case _: String => true
     case _ => false
   }
 }
