@@ -1,7 +1,7 @@
 package kafka
 
 import java.util.Properties
-import  User
+
 
 import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode
@@ -38,10 +38,10 @@ object FlinkKafkaStream {
 
     val streamUserstreamWindow = streamWindow.map(f => {
 
-      new User(f.findValue("value").get("name").asText(), f.findValue("value").get("age").asInt())
+      new User(f.findValue("value").get("name").asText(),
+        f.findValue("value").get("age").asInt(), f.findValue("value").get("createTime").asLong())
 
     })
-
 
 
 
@@ -77,7 +77,8 @@ object FlinkKafkaStream {
 
     val streamUserMax = streamJsonmax.map(f => {
 
-      new User(f.findValue("value").get("name").asText(), f.findValue("value").get("age").asInt())
+      new User(f.findValue("value").get("name").asText(),
+        f.findValue("value").get("age").asInt(),f.findValue("value").get("createTime").asLong())
 
     })
 
@@ -85,7 +86,7 @@ object FlinkKafkaStream {
     /* sum*/
     streamUserMax.keyBy("name").sum("age").print()
 
-    streamUserMax.keyBy("name").reduce((a:User,b:User) => new User(a.name, a.age+b.age) ).print()
+    streamUserMax.keyBy("name").reduce((a:User,b:User) => new User(a.name, a.age+b.age, a.createTime) ).print()
 
 
     /* sum*/
@@ -113,7 +114,8 @@ object FlinkKafkaStream {
 
     val streamUser = streamJson.map(f => {
 
-      new User(f.findValue("value").get("name").asText(), f.findValue("value").get("age").asInt())
+      new User(f.findValue("value").get("name").asText(), f.findValue("value").get("age").asInt()
+      ,f.findValue("value").get("createTime").asLong())
 
     })
 

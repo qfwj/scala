@@ -6,6 +6,7 @@ import org.apache.flink.runtime.state.FunctionInitializationContext;
 import org.apache.flink.runtime.state.FunctionSnapshotContext;
 import org.apache.flink.streaming.api.checkpoint.CheckpointedFunction;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
+import org.apache.flink.streaming.api.watermark.Watermark;
 
 /**
  * @Description: TODO
@@ -19,12 +20,16 @@ public class TestSourceFunction implements SourceFunction<Integer>, Checkpointed
     private transient ListState<Integer> checkpointedCount;
 
     @Override
-    public void run(SourceContext ctx) {
-        while (isRunning && count < 100) {
+    public void run(SourceContext ctx)  throws Exception {
+        while (isRunning && count < 10) {
             // this synchronized block ensures that state checkpointing,
             // internal state updates and emission of elements are an atomic operation
+            Thread.sleep(300);
             synchronized (ctx.getCheckpointLock()) {
-                ctx.collect(count);
+                ctx.collectWithTimestamp(count, count);
+                if (count%5 ==0) {
+                    ctx.emitWatermark(new Watermark(count));
+                }
                 count++;
             }
         }
