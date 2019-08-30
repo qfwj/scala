@@ -9,6 +9,7 @@ import org.apache.flink.configuration.Configuration
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.api.scala.extensions._
+import org.apache.flink.streaming.api.windowing.time.Time
 
 /**
   * @Description: TODO
@@ -21,6 +22,19 @@ object FlinkMain {
 
 
     val env = StreamExecutionEnvironment.createLocalEnvironment()
+
+
+    val text1 = env.socketTextStream("localhost", 8888)
+
+    val counts1 = text1.flatMap { _.toLowerCase.split("\\W+") filter { _.nonEmpty } }
+      .map { (_, 1) }
+      .keyBy(0)
+      .timeWindow(Time.seconds(5))
+      .sum(1)
+
+    counts1.print()
+
+    env.execute("Window Stream WordCount")
 
     val testIteration = env.fromElements(1,2,3,4,5)
    // testIteration.iterate()
@@ -60,6 +74,7 @@ object FlinkMain {
     //caseClass.keyBy("word").print()
     // caseClass.keyBy(0).print()
     caseClass.keyBy(_.word).print()
+
     env.execute()
 
 
@@ -78,10 +93,7 @@ object FlinkMain {
     env.execute("Window Stream WordCount")
 
 
-    val fromCollection = env.fromCollection(List("ww", "cd", "we", "sdwew", "we"))
-    val fromCount = fromCollection.map((_, 1)).keyBy(0).sum(1)
-    fromCount.print()
-    env.execute()
+
 
     /*保存文件*/
     //val fromElement = env.fromElements("32", "23","12","12","12","23")
@@ -90,7 +102,7 @@ object FlinkMain {
     //env.execute()
 
 
-    val someIntegers: DataStream[Long] = env.generateSequence(0, 1000)
+/*    val someIntegers: DataStream[Long] = env.generateSequence(0, 1000)
 
     val iteratedStream = someIntegers.iterate(
       iteration => {
@@ -106,7 +118,7 @@ object FlinkMain {
     //  someIntegers.print()
     iteratedStream.print()
 
-    env.execute()
+    env.execute()*/
 
   }
 
