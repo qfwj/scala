@@ -1,3 +1,5 @@
+package kafka;
+
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -10,7 +12,7 @@ import java.util.concurrent.Future;
  * @author: zhbo
  * @date 2019/8/26 16:52
  */
-public class Kafka {
+public class KafkaProducerTest {
 
     public static void main(String[] args) throws Exception {
         Properties props = new Properties();

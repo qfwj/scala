@@ -1,22 +1,17 @@
-import java.util.{Properties, Random}
+package kafka
 
-import org.apache.flink.api.common.serialization.{SimpleStringSchema, TypeInformationSerializationSchema}
-import org.apache.flink.streaming.api.TimeCharacteristic
-import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
-import org.apache.flink.streaming.api.scala._
-import org.apache.flink.streaming.api.windowing.time.Time
-import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKafkaProducer, KafkaDeserializationSchema}
-import com.alibaba.fastjson.{JSON, JSONObject}
-import org.apache.flink.api.common.typeinfo.{IntegerTypeInfo, TypeInformation}
-import org.apache.flink.api.common.typeutils.TypeSerializer
+import java.util.Properties
+import  User
+
+import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode
-import org.apache.flink.streaming.api.functions.AssignerWithPeriodicWatermarks
-import org.apache.flink.streaming.api.functions.source.SourceFunction.SourceContext
+import org.apache.flink.streaming.api.TimeCharacteristic
+import org.apache.flink.streaming.api.scala.{StreamExecutionEnvironment, _}
 import org.apache.flink.streaming.api.windowing.assigners._
-import org.apache.flink.streaming.api.windowing.triggers.{CountTrigger, EventTimeTrigger, ProcessingTimeTrigger, Trigger}
+import org.apache.flink.streaming.api.windowing.time.Time
+import org.apache.flink.streaming.api.windowing.triggers.{CountTrigger, ProcessingTimeTrigger}
+import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKafkaProducer}
 import org.apache.flink.streaming.util.serialization.JSONKeyValueDeserializationSchema
-
-import scala.util.Properties
 /**
   * @Description: TODO
   * @author: zhbo

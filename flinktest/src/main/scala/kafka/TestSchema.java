@@ -1,12 +1,8 @@
+package kafka;
+
 import com.alibaba.fastjson.JSONObject;
 import org.apache.flink.api.common.serialization.AbstractDeserializationSchema;
-import org.apache.flink.api.common.serialization.DeserializationSchema;
 import org.apache.flink.api.common.serialization.SerializationSchema;
-import org.apache.flink.api.common.serialization.TypeInformationSerializationSchema;
-import org.apache.flink.streaming.connectors.kafka.KafkaDeserializationSchema;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-
-import java.io.IOException;
 
 /**
  * @Description: TODO

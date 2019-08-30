@@ -1,3 +1,4 @@
+import org.apache.flink.api.common.typeinfo.TypeInformation
 import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.scala.{DataStream, StreamExecutionEnvironment}
 
@@ -10,11 +11,6 @@ object FlinkWatermarkStream {
 
   def main(args: Array[String]): Unit = {
 
-    val env = StreamExecutionEnvironment.getExecutionEnvironment
-    env.setStreamTimeCharacteristic(TimeCharacteristic.ProcessingTime)
-
-    val stream:DataStream[Int] = env.addSource(new TestSourceFunction[Int])
-    stream.print()
   }
 
 

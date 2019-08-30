@@ -1,3 +1,5 @@
+package sourceFunction;
+
 import org.apache.flink.api.common.state.ListState;
 import org.apache.flink.api.common.state.ListStateDescriptor;
 import org.apache.flink.runtime.state.FunctionInitializationContext;
@@ -10,7 +12,7 @@ import org.apache.flink.streaming.api.functions.source.SourceFunction;
  * @author: zhbo
  * @date 2019/8/30 10:27
  */
-public class TestSourceFunction<T> implements SourceFunction<T>, CheckpointedFunction {
+public class TestSourceFunction implements SourceFunction<Integer>, CheckpointedFunction {
     private Integer count = 0;
     private volatile boolean isRunning = true;
 
@@ -18,7 +20,7 @@ public class TestSourceFunction<T> implements SourceFunction<T>, CheckpointedFun
 
     @Override
     public void run(SourceContext ctx) {
-        while (isRunning && count < 1000) {
+        while (isRunning && count < 100) {
             // this synchronized block ensures that state checkpointing,
             // internal state updates and emission of elements are an atomic operation
             synchronized (ctx.getCheckpointLock()) {
