@@ -37,13 +37,15 @@ object WaterMarkTest {
     val streamUserstreamWindow = streamWindow.map(f => {
 
       new User(f.findValue("value").get("name").asText(),
-        f.findValue("value").get("age").asInt(), System.currentTimeMillis())
+       // f.findValue("value").get("age").asInt(), System.currentTimeMillis())
+        f.findValue("value").get("age").asInt(), f.findValue("value").get("createTime").asLong())
 
     })
 
     streamUserstreamWindow.assignTimestampsAndWatermarks( new TimeLagWatermarkGenerator)
-        .keyBy("name").timeWindow(Time.seconds(10))
-        .max("age").print()
+       // .keyBy("name").timeWindow(Time.seconds(5))
+        .keyBy("name").timeWindow(Time.seconds(3))
+        .maxBy("age").print()
     env.execute()
   }
 

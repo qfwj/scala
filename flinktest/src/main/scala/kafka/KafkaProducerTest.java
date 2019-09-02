@@ -43,12 +43,25 @@ public class KafkaProducerTest {
 
         // send()方法是异步的
         Future ff = producer.send(new ProducerRecord<String, String>
-                ("test", null, "{\"name\":\"小明\",\"age\":110,\"createTime\":10}"));
+                ("test", null, "{\"name\":\"小明1\",\"age\":122,\"createTime\":"+ (System.currentTimeMillis() - 2500)+"}"));
+
 
         ff = producer.send(new ProducerRecord<String, String>
-                ("test", null, "{\"name\":\"小明\",\"age\":121,\"createTime\":10}"));
+                ("test", null, "{\"name\":\"小明2\",\"age\":122,\"createTime\":"+ (System.currentTimeMillis() - 2000)+"}"));
 
-       // ff = producer.send(new ProducerRecord<String, String>("test", null, "{\"name\":\"小明\",\"age\":2}"));
+        ff = producer.send(new ProducerRecord<String, String>
+                ("test", null, "{\"name\":\"小明3\",\"age\":122,\"createTime\":"+ (System.currentTimeMillis() + 3000)+"}"));
+//
+      ff = producer.send(new ProducerRecord<String, String>
+                ("test", null, "{\"name\":\"小明4\",\"age\":112,\"createTime\":"+ System.currentTimeMillis()+"}"));
+//
+   //    Thread.sleep(6000);
+//        ff = producer.send(new ProducerRecord<String, String>
+//                ("test", null, "{\"name\":\"小明\",\"age\":10,\"createTime\":102}"));
+//        ff = producer.send(new ProducerRecord<String, String>
+//                ("test", null, "{\"name\":\"小明\",\"age\":101,\"createTime\":101}"));
+
+        // ff = producer.send(new ProducerRecord<String, String>("test", null, "{\"name\":\"小明\",\"age\":2}"));
         Object oo = ff.get();
        // ff = producer.send(new ProducerRecord<String, String>("test", null, "{\"name\":\"小小\",\"age\":0}"));
        // ff = producer.send(new ProducerRecord<String, String>("test", null, "{\"name\":\"小小\",\"age\":4}"));

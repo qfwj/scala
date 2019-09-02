@@ -33,18 +33,18 @@ class BoundedOutOfOrdernessGenerator extends AssignerWithPeriodicWatermarks[User
   */
 class TimeLagWatermarkGenerator extends AssignerWithPeriodicWatermarks[User] {
 
-  val maxTimeLag = 10000L // 5 seconds
+  val maxTimeLag = 3000L // 5 seconds
   var currentMaxTimestamp: Long = _
 
   override def extractTimestamp(element: User, previousElementTimestamp: Long): Long = {
-    currentMaxTimestamp = element.createTime
+    currentMaxTimestamp = element.age + 1
+    println("user:" + element.name  + ",time:" + element.createTime)
     element.createTime
   }
 
   override def getCurrentWatermark(): Watermark = {
     // return the watermark as current time minus the maximum time lag
     val tmp = System.currentTimeMillis() - maxTimeLag
-
     new Watermark(tmp)
   }
 }
