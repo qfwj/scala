@@ -65,6 +65,12 @@
     <orderEntry type="library" name="Maven: com.twitter:chill-java:0.7.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.flink:flink-clients_2.12:1.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.flink:flink-optimizer_2.12:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.flink:flink-table-planner_2.12:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.flink:flink-table-common:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.flink:flink-table-api-java-bridge_2.12:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.flink:flink-table-api-java:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.flink:flink-table-api-scala-bridge_2.12:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.flink:flink-table-api-scala_2.12:1.8.0" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.41" level="project" />
   </component>
 </module>

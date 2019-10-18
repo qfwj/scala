@@ -15,6 +15,79 @@ object FlinkDataSetMain {
     val env = ExecutionEnvironment.getExecutionEnvironment
 
 
+
+    /*join*/
+    val textJoin11 = env.fromElements(("1", 2, 2), ("12", 1, 5), ("21", 5, 1), ("22", 3, 2))
+    val textJoin21 = env.fromElements((44, 44, "mmm"), (2, 2, "asdas"), (2, 1, "hhh"), (1, 5, "mn"), (2, 1, "ssss"), (3, 2, "ddd"))
+
+    /*join strategy  hint  BROADCAST_HASH_FIRST  REPARTITION_HASH_SECOND*/
+
+    /*right join  保证右边一定有*/
+    textJoin11.rightOuterJoin(textJoin21).where(1).equalTo(0) {
+      (p1, p2) => ( {
+        if (p1 == null) "" else p1._1
+      } + p2._3, if (p1 == null) 0 else p1._2 + p2._1)
+    }.print()
+
+
+    /*left join  保证左边一定有*/
+    /*(22ddd,6)
+      (12mn,2)
+      (21,5)
+      (1asdas,4)
+      (1hhh,4)
+      (1ssss,4)*/
+    textJoin11.leftOuterJoin(textJoin21).where(1).equalTo(0) {
+      (p1, p2) => (p1._1 + {
+        if (p2 == null) "" else p2._3
+      }, p1._2 + {
+        if (p2 == null) 0 else p2._1
+      })
+    }.print()
+
+
+
+
+
+    /*支持额外函数*/
+    textJoin11.join(textJoin21).where(1).equalTo(0) {
+      (p1, p2) => (p1._1 + p2._3, p1._2 + p2._1)
+    }.print()
+
+
+
+    /*
+      * ((2,3,2),(3,2,ddd))
+      * ((1,1,5),(1,5,mn))
+      * ((1,2,2),(2,2,asdas))
+      * ((1,2,2),(2,1,hhh))
+      * */
+    textJoin11.join(textJoin21).where(1).equalTo(0).print()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     val input: DataSet[String] = env.fromElements("A", "B", "C", "D", "E", "F", "G", "H")
 
 

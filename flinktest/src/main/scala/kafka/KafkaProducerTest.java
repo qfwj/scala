@@ -43,7 +43,7 @@ public class KafkaProducerTest {
 
         // send()方法是异步的
         Future ff = producer.send(new ProducerRecord<String, String>
-                ("test", null, "{\"name\":\"小明1\",\"age\":122,\"createTime\":"+ (System.currentTimeMillis() - 2500)+"}"));
+                ("test", null, "{\"name\":\"小明1\",\"age\":1245,\"createTime\":"+ (System.currentTimeMillis() - 2500)+"}"));
 
 
         ff = producer.send(new ProducerRecord<String, String>
@@ -53,7 +53,7 @@ public class KafkaProducerTest {
                 ("test", null, "{\"name\":\"小明3\",\"age\":122,\"createTime\":"+ (System.currentTimeMillis() + 3000)+"}"));
 //
       ff = producer.send(new ProducerRecord<String, String>
-                ("test", null, "{\"name\":\"小明4\",\"age\":112,\"createTime\":"+ System.currentTimeMillis()+"}"));
+                ("test", null, "{\"name\":\"小明\",\"age\":112,\"createTime\":"+ System.currentTimeMillis()+"}"));
 //
    //    Thread.sleep(6000);
 //        ff = producer.send(new ProducerRecord<String, String>
