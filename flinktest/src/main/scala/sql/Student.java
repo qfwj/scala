@@ -7,11 +7,12 @@ import scala.Serializable;
  * @author: zhbo
  * @date 2019/10/18 11:03
  */
-public class Student implements Serializable {
+public class Student  {
+    String name;
+    Integer age;
 
-       public String name;
-        public Integer age;
 
+    /*必须有get set方法*/
     public String getName() {
         return name;
     }
