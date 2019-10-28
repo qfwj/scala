@@ -5,6 +5,7 @@ import java.util.Properties
 import kafka.User
 import org.apache.flink.api.common.typeinfo.TypeInformation
 import org.apache.flink.api.scala.{DataSet, ExecutionEnvironment}
+import org.apache.flink.runtime.taskmanager.Task
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode
 import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.scala.{StreamExecutionEnvironment, _}
@@ -41,7 +42,6 @@ object SqlTest {
     val tableEnv = StreamTableEnvironment.create(env)
 
 
-
     /*测试 window*/
     val streamWindow: DataStream[ObjectNode] = env.addSource(new FlinkKafkaConsumer[ObjectNode]("test",  new JSONKeyValueDeserializationSchema(true), properties))
 
@@ -72,6 +72,7 @@ object SqlTest {
 
     val outStreamRetract:DataStream[(Boolean, Person)] = tableEnv.toRetractStream(resultRetract)
     val outStreamAppend:DataStream[(Boolean, Person)] = tableEnv.toAppendStream(resultAppend)
+
 
 
     outStreamAppend.print()

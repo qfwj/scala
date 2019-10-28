@@ -6,10 +6,14 @@ import java.util
 import org.apache.flink.api.common.accumulators.{Histogram, IntCounter}
 import org.apache.flink.api.common.functions.RichMapFunction
 import org.apache.flink.configuration.Configuration
+import org.apache.flink.runtime.io.network.api.writer.RecordWriter
+import org.apache.flink.runtime.jobmanager.scheduler.SlotSharingGroup
+import org.apache.flink.streaming.api.operators.{AbstractUdfStreamOperator, OneInputStreamOperator}
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.api.scala.extensions._
 import org.apache.flink.streaming.api.windowing.time.Time
+import org.apache.flink.streaming.runtime.tasks.StreamTask
 
 /**
   * @Description: TODO
@@ -19,7 +23,6 @@ import org.apache.flink.streaming.api.windowing.time.Time
 object FlinkMain {
 
   def main(args: Array[String]): Unit = {
-
 
     val env = StreamExecutionEnvironment.createLocalEnvironment()
 
