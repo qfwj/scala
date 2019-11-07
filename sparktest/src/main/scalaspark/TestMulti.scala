@@ -1,3 +1,5 @@
+package scalaspark
+
 import org.apache.spark.{SparkConf, SparkContext}
 
 object TestMulti {

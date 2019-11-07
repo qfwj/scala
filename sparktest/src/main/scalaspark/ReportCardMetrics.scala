@@ -1,3 +1,5 @@
+package scalaspark
+
 import org.apache.spark.rdd.RDD
 
 case class ReportCardMetrics(longestWord: Int,

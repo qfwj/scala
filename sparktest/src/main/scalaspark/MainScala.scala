@@ -1,4 +1,5 @@
-import scala.math.Ordering
+package scalaspark
+
 import scala.util.Sorting
 
 

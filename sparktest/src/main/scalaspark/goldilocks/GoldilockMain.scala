@@ -1,4 +1,4 @@
-package goldilocks
+package scalaspark.goldilocks
 
 /**
   * @Description: TODO

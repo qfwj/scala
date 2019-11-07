@@ -1,5 +1,4 @@
-package scala.Monad
-
+package scalaspark.Monad
 
 /**
   * @Description: TODO
@@ -13,7 +12,6 @@ object MonadTest {
 
     val n = list.foldLeft(0)(_+_)
     println(n)
-    scala.Function1
 
   }
 

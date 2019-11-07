@@ -1,4 +1,4 @@
-package sql
+package scalaspark.sql
 
 import org.apache.spark.sql.SparkSession
 

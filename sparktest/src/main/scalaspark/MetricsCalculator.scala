@@ -1,3 +1,5 @@
+package scalaspark
+
 
 class MetricsCalculator(
                          val totalWords : Int,

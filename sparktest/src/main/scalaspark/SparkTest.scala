@@ -1,3 +1,5 @@
+package scalaspark
+
 import org.apache.spark.rdd.{PairRDDFunctions, RDD}
 import org.apache.spark.util.AccumulatorV2
 import org.apache.spark.{SparkConf, SparkContext}
