@@ -1,5 +1,7 @@
 package javasss.testclone;
 
+import com.alibaba.fastjson.JSONObject;
+
 /**
  * @Description: TODO
  * @author: zhbo
@@ -12,5 +14,6 @@ public class TestClone {
 
         Object ddd = pp.clone();
         System.out.println("");
+
     }
 }

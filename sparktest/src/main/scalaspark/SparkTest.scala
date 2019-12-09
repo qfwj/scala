@@ -22,6 +22,12 @@ object SparkTest {
     val config = new SparkConf().setAppName("local-1553848694056").setMaster("local")
     val sc = new SparkContext(config)
 
+    val dd = sc.textFile("C:\\Users\\nefu_\\Desktop\\测试文本.txt")
+
+    var ss =""
+    dd.flatMap(_.split("\t")).filter(_.nonEmpty).collect().foreach(ss +=_ +",")
+
+println(ss)
 
     /*
     *
