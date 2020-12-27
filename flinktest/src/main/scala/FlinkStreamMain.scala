@@ -8,23 +8,81 @@ import org.apache.flink.api.common.functions.RichMapFunction
 import org.apache.flink.configuration.Configuration
 import org.apache.flink.runtime.io.network.api.writer.RecordWriter
 import org.apache.flink.runtime.jobmanager.scheduler.SlotSharingGroup
+import org.apache.flink.streaming.api.TimeCharacteristic
+import org.apache.flink.streaming.api.functions.co.{CoFlatMapFunction, CoProcessFunction}
 import org.apache.flink.streaming.api.operators.{AbstractUdfStreamOperator, OneInputStreamOperator}
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.api.scala.extensions._
+import org.apache.flink.streaming.api.windowing.assigners.{TumblingEventTimeWindows, TumblingProcessingTimeWindows}
 import org.apache.flink.streaming.api.windowing.time.Time
 import org.apache.flink.streaming.runtime.tasks.StreamTask
+import org.apache.flink.util.Collector
 
 /**
   * @Description: TODO
   * @author: zhbo
   * @date 2019/7/26 11:17
   */
+
+
 object FlinkMain {
+
+  case class Person( var name:String,var  age:Int, var son:Son)
+  case class Son(val name:String, val age:Int)
 
   def main(args: Array[String]): Unit = {
 
-    val env = StreamExecutionEnvironment.createLocalEnvironment()
+    val env = StreamExecutionEnvironment.createLocalEnvironment(4)
+    env.setStreamTimeCharacteristic(TimeCharacteristic.ProcessingTime)
+
+    /*test extension*/
+ /*   val testExten = env.fromElements(Person("1",2), Person("1",9),Person("8",5),Person("7",5),
+      Person("8",2),Person("4",1),Person("2",5),Person("2",2))*/
+ val testExten = env.fromElements(Person("1",2, Son("1",1)), Person("3",5, Son("11",1)), Person("2",1, Son("11",1)))
+
+    val testExten1 = env.fromElements(Son("2",2))
+
+
+    testExten.map(new RichMapFunction[Person] {
+      map()={
+        getRuntimeContext.getState().update()
+      }
+    })
+    testExten.keyBy(1).broadcast
+
+
+    testExten.connect(testExten1)
+      .flatMap(  new CoFlatMapFunction[Person, Son, Person] {
+         var person:Map[String,Person]  = Map()
+        def flatMap1  (value:Person, out:Collector[Person])= {
+          person += (value.name-> value)
+        }
+        def flatMap2   (value:Son, out:Collector[Person])= {
+          person(value.name).son= value
+          val oo =  person(value.name)
+          person -= value.name
+          out.collect(oo)
+        }
+      }
+    ).print()
+    env.execute
+
+
+    testExten.union(testExten).print()
+    env.execute
+    val textParti = testExten.windowAll(TumblingProcessingTimeWindows.of(Time.seconds(5)))
+   // textParti.reduce((a,b)=>Person(a.name+b.name, a.age+ b.age)).print()
+   /* val textParti1 = textParti.foldWith(2) ((a, b)=>b.age+ a)
+      //.windowAll(TumblingProcessingTimeWindows.of(Time.seconds(5))).reduce(_+_)
+    textParti1.print()*/
+    env.execute
+
+      //textParti.coGroup(testExten).where(_.name).equalTo(_.name)
+
+
+  //  textParti.print(
+
 
 
     val text1 = env.socketTextStream("localhost", 8888)
@@ -43,17 +101,9 @@ object FlinkMain {
    // testIteration.iterate()
 
 
-    /*test extension*/
-    val testExten = env.fromElements("1", "2", "3", "4", "2")
-    val textParti = testExten
 
-      .mapWith {
-        case x: String => (x, x.toInt)
-      }
-    //mapWith(new MyPartialFunction)
 
-    textParti.print()
-    env.execute()
+
 
 
     /*test counter  histogram*/

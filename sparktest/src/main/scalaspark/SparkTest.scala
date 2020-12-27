@@ -19,15 +19,17 @@ object SparkTest {
            .map((_,1))
            .filter( _._1 == "12" )
            .map(f=>f)*/
-    val config = new SparkConf().setAppName("local-1553848694056").setMaster("local")
+    val config = new SparkConf().setAppName("local-1553848694056").setMaster("local[4]")
     val sc = new SparkContext(config)
 
-    val dd = sc.textFile("C:\\Users\\nefu_\\Desktop\\测试文本.txt")
+    val dd = sc.textFile("C:\\Users\\擎风\\Desktop\\测试文本.txt",5)
 
-    var ss =""
-    dd.flatMap(_.split("\t")).filter(_.nonEmpty).collect().foreach(ss +=_ +",")
+    val mapRdd = dd.map((_,1)).repartition(5)
+    mapRdd.foreach(println)
+    val dd1 = mapRdd.aggregateByKey(0)((a: Int, b: Int) => a + b, (a: Int, b: Int) => a + b)
+    dd1.foreach(println)
 
-println(ss)
+
 
     /*
     *

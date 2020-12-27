@@ -51,7 +51,7 @@ object StreamMain {
     val conf = new SparkConf().setMaster("local[5]").setAppName("NetworkWordCount")
     val ssc = new StreamingContext(conf, Seconds(1))
     val stream = ssc.textFileStream("C:\\Users\\nefu_\\Desktop\\ETL")
-    stream.foreachRDD(_.collect().foreach(println(_)))
+    //stream.map(f=>(f,f)).repartition()reforeachRDD(_.collect().foreach(println(_)))
 
 
     ssc.start()

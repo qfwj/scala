@@ -13,7 +13,7 @@ object TestSourceCodeMain1126 {
     val sparkConf = new SparkConf().setMaster("local[3]").setAppName("testHhh")
 
     val sc = new SparkContext(sparkConf)
-     sc.hadoopConfiguration.set("dfs.client.use.datanode.hostname","true")
+     //sc.hadoopConfiguration.set("dfs.client.use.datanode.hostname","true")
     val tt = sc.hadoopConfiguration.get("dfs.client.use.datanode.hostname")
     //val rdd = sc.textFile("C:\\Users\\nefu_\\Desktop\\jiebadict.dic")
     val rdd = sc.parallelize(List(12,23,45,6,23,6))
@@ -116,6 +116,7 @@ object TestSourceCodeMain1126 {
     val rddHdfs = sc.textFile("hdfs://10.50.162.184:9000/user/test.txt")
     rddHdfs.flatMap(_.split(" ").filter(_.nonEmpty)).collect().foreach(println(_))
     //rdd.union(rddHdfs)//实质上就是两个合并为一个RDD
+
 
     println("")
 

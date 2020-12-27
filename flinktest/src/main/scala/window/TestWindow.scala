@@ -51,9 +51,9 @@ object TestWindow {
         f.findValue("value").get("age").asInt(), f.findValue("value").get("createTime").asLong())
 
     })
+   // streamUserstreamWindow.win().aggregate()
 
-
-    streamUserstreamWindow.keyBy("name").sum("age").print()
+   // streamUserstreamWindow.keyBy("name").window().sum("age").print()
 
     env.execute()
 

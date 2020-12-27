@@ -3,12 +3,8 @@ package kafka;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import sun.misc.Launcher;
-import sun.misc.Service;
 
-import java.lang.reflect.Proxy;
 import java.util.Properties;
-import java.util.ServiceLoader;
 import java.util.concurrent.Future;
 
 /**
@@ -54,7 +50,6 @@ public class KafkaProducerTest {
 
         ff = producer.send(new ProducerRecord<String, String>
                 ("test", null, "{\"name\":\"小二毛\",\"age\":122,\"createTime\":"+ (System.currentTimeMillis() - 2000)+"}"));
-
         ff = producer.send(new ProducerRecord<String, String>
                 ("test", null, "{\"name\":\"小四毛\",\"age\":522,\"createTime\":"+ (System.currentTimeMillis() + 3000)+"}"));
 //

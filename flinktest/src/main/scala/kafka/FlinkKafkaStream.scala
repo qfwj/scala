@@ -2,8 +2,8 @@ package kafka
 
 import java.util.Properties
 
-
 import org.apache.flink.api.common.serialization.SimpleStringSchema
+import org.apache.flink.api.common.state.{ReducingState, ValueState}
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode
 import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.scala.{StreamExecutionEnvironment, _}
@@ -29,7 +29,10 @@ object FlinkKafkaStream {
     properties.setProperty("group.id", "test");
     val env = StreamExecutionEnvironment.getExecutionEnvironment
 
+
+
     env.setStreamTimeCharacteristic(TimeCharacteristic.ProcessingTime)
+
 
 
 
@@ -44,16 +47,17 @@ object FlinkKafkaStream {
     })
 
 
-
+    val end = streamUserstreamWindow.keyBy(1)
+      .window(TumblingProcessingTimeWindows.of(Time.seconds(2))).sum(1)
+      .keyBy().window()
     /*GlobalWindows */
-    val globalWindowedStream = streamUserstreamWindow.keyBy("name")
-      .window(GlobalWindows.create())
-      .trigger(CountTrigger.of(4) )
-    globalWindowedStream.max("age").print()
+    val globalWindowedStream = streamUserstreamWindow.keyBy("name").print()
+      //.trigger(CountTrigger.of(4) )
+    //globalWindowedStream.max("age").print()
     //.window(TumblingEventTimeWindows.of(Time.seconds(5))
 
 
-    env.execute()
+    env.execute("dsdsdsdasdasdasdsa")
 
     /* ProcessingTimeSessionWindows session*/
     val sessionWindowedStream = streamUserstreamWindow.keyBy("name").window(ProcessingTimeSessionWindows.withGap(Time.seconds(10)))

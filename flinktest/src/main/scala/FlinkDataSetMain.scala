@@ -1,3 +1,4 @@
+import FlinkMain.Person
 import org.apache.flink.api.common.operators.Order
 import org.apache.flink.api.java.aggregation.Aggregations
 import org.apache.flink.api.scala._
@@ -14,8 +15,9 @@ object FlinkDataSetMain {
   def main(args: Array[String]): Unit = {
     val env = ExecutionEnvironment.getExecutionEnvironment
 
+    /*val testExten = env.fromElements(Person("1",2), Person("1",9),Person("8",5),Person("7",5),Person("8",2),Person("4",1),Person("2",5),Person("2",2))
 
-
+    testExten.groupBy(1).reduce((a,b)=> Person(a.name, a.age+b.age)).print()*/
     /*join*/
     val textJoin11 = env.fromElements(("1", 2, 2), ("12", 1, 5), ("21", 5, 1), ("22", 3, 2))
     val textJoin21 = env.fromElements((44, 44, "mmm"), (2, 2, "asdas"), (2, 1, "hhh"), (1, 5, "mn"), (2, 1, "ssss"), (3, 2, "ddd"))
