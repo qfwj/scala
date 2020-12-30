@@ -1,12 +1,12 @@
 import java.io.{File, PrintWriter}
 import java.util
 
-import scala.io.Source
 import testTrait._
 import testTrait.package0.package11.TestPackage
 
 import scala.collection.mutable
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
+import scala.io.Source
 
 class Time {
   private[this] var h = 12

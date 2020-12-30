@@ -1,4 +1,4 @@
-import scala.collection.mutable.ListBuffer
+
 
 object TestCase {
 
@@ -48,5 +48,3 @@ class parent extends grand {
 }
 class son extends parent
 
-class up
-class down extends up

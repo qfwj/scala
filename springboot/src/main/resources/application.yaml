@@ -1,7 +1,8 @@
 
 spring:
   kafka:
-    bootstrap-servers: localhost:9092
+   # bootstrap-servers: localhost:9092
+    bootstrap-servers: 10.50.162.207:9092
     consumer:
       group-id: test
   profiles:

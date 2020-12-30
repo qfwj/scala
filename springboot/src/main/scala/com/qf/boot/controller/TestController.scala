@@ -19,15 +19,23 @@ class TestController {
   var kafkaTemplate: KafkaTemplate[String, String] = null
 
   @PostConstruct
-  @GetMapping(Array("/testkafka")) def main1(): Unit = {
-    kafkaTemplate.send("testkafka1", "tessadasd")
+  @GetMapping(Array("/testkafka")) def main1() = {
+    var i = 0
+
+    while(i < 100){
+      i +=1
+      kafkaTemplate.send("testkafka", "tessadasd" + i)
+    }
+    "end"
   }
 
 
   //@KafkaListener(id = "${spring.kafka.consumer.group-id}", topics = "${channel.topic}", containerFactory = "batchFactory")
-  @KafkaListener(id = "${spring.kafka.consumer.group-id}", topics = Array("testkafka1"), containerFactory = "batchFactory")
+  @KafkaListener(id = "${spring.kafka.consumer.group-id}", topics = Array("testkafka"), containerFactory = "batchFactory")
   def listen(records: util.List[ConsumerRecord[String, String]], ack: Acknowledgment): Unit = {
-    val map =  records.asScala.groupBy(f=>f.partition).toMap
+    val map =  records.asScala.groupBy(f=>f.partition).map(f=>(f._1,f._2.maxBy(f1=>f1.offset())))
+    records.asScala
+    println("offset 记录"+ map)
     ack.acknowledge()
   }
 }
