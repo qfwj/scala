@@ -23,8 +23,10 @@ object Executor extends App {
     val t = Thread.currentThread().getName
     println(s"$t: future is coming")
     123
-  }
-    //.andThen(new TestPartial)
+  }.andThen({
+    case x:Try[Int] if x.get >12 => 12
+    case x:Try[Int] if x.get <12 => 0
+  })
 
   val re = f.map(r => {
     val t = Thread.currentThread().getName
