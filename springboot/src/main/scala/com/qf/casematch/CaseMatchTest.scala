@@ -16,8 +16,7 @@ val  c1 = (x:Any) => x match {
 
      /*针对List*/
    case x::Nil => println(x+ "single List")
-   case value1 :: Nil =>     // 只包含一个value1
-   case 变量1 :: 变量2 :: 变量3 :: Nil =>     // 包含三个元素
+   case x1 :: x2 ::x3 :: Nil =>     // 包含三个元素
    case value1 :: tail =>     // 第一个元素为value1
 
 

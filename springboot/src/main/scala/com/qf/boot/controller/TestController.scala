@@ -31,7 +31,7 @@ class TestController {
 
 
   //@KafkaListener(id = "${spring.kafka.consumer.group-id}", topics = "${channel.topic}", containerFactory = "batchFactory")
-  @KafkaListener(id = "${spring.kafka.consumer.group-id}", topics = Array("testkafka"), containerFactory = "batchFactory")
+//  @KafkaListener(id = "${spring.kafka.consumer.group-id}", topics = Array("testkafka"), containerFactory = "batchFactory")
   def listen(records: util.List[ConsumerRecord[String, String]], ack: Acknowledgment): Unit = {
     val map =  records.asScala.groupBy(f=>f.partition).map(f=>(f._1,f._2.maxBy(f1=>f1.offset())))
     records.asScala
