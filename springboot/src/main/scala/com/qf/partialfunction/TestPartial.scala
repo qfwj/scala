@@ -22,7 +22,16 @@ class TestPartial extends PartialFunction[Try[Int], Int] {
 
 object TestPartialO {
   def main(args: Array[String]): Unit = {
+    println (List(1, 3, 5, "seven") collect  { case i: Int => i + 1 }) // work
+   // List(1, 3, 5, "seven") map { case i: Int => i + 1 } // won't work
 
+    /**
+     * case会被直接编译为偏函数
+     */
+    val mm1:PartialFunction[Int,Int]=  {
+     case x1:Int if x1 >12 => 12
+   }
+    println(mm1(13))
 
    val mm =   (x:Any)  => {
       x match {

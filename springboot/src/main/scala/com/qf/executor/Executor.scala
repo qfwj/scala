@@ -18,15 +18,17 @@ object Executor extends App {
   executors.setKeepAliveTime(5, TimeUnit.SECONDS)
   executors.allowCoreThreadTimeOut(true)
   implicit val ec: ExecutionContextExecutorService = ExecutionContext.fromExecutorService(executors)
-
+  val mm:PartialFunction[Int,Int]=  {
+    case x1:Int if x1 >12 => 12
+  }
+  println(mm(13))
   val f = Future {
     val t = Thread.currentThread().getName
     println(s"$t: future is coming")
     123
-  }.andThen({
-    case x:Try[Int] if x.get >12 => 12
-    case x:Try[Int] if x.get <12 => 0
-  })
+  }//.andThen(mm)
+
+
 
   val re = f.map(r => {
     val t = Thread.currentThread().getName
