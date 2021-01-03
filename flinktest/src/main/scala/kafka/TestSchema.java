@@ -18,7 +18,6 @@ public class TestSchema extends  AbstractDeserializationSchema<User> implements 
         return u;
     }
 
-    @Override
     public byte[] serialize(User element){
         String dd = JSONObject.toJSONString(element);
         return dd.getBytes();

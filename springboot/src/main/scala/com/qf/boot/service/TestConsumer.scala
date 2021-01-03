@@ -33,8 +33,10 @@ class TestConsumer {
         val value = f.value
         println(s"topic: $topic   partition:$partiton  offset:$offset  value: $value"  )
       })
-      consumer.seek(new TopicPartition("testkafka", 1), 714)
+      consumer.pause()
 
+      consumer.seek(new TopicPartition("testkafka", 1), 714)
+      consumer.resume()
     }
   }
 }

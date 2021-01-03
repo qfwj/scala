@@ -49,7 +49,7 @@ object FlinkKafkaStream {
 
     val end = streamUserstreamWindow.keyBy(1)
       .window(TumblingProcessingTimeWindows.of(Time.seconds(2))).sum(1)
-      .keyBy().window()
+      .keyBy().reduce()
     /*GlobalWindows */
     val globalWindowedStream = streamUserstreamWindow.keyBy("name").print()
       //.trigger(CountTrigger.of(4) )
