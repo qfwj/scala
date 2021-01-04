@@ -44,7 +44,7 @@ class KafkaConfig {
     propsMap.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "100")
     propsMap.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "15000")
     propsMap.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, classOf[StringDeserializer])
-    propsMap.put(ConsumerConfig.GROUP_ID_CONFIG,"scalatest1")
+    propsMap.put(ConsumerConfig.GROUP_ID_CONFIG,"scalatest6")
     propsMap.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, classOf[StringDeserializer])
     // propsMap.put(ConsumerConfig.GROUP_ID_CONFIG, propsConfig.getProperties().gget);
     propsMap.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")

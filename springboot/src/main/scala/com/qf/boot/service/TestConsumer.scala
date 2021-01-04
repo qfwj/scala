@@ -5,7 +5,8 @@ import java.util.Collections
 import java.util.concurrent.atomic.AtomicBoolean
 
 import javax.annotation.PostConstruct
-import org.apache.kafka.clients.consumer.KafkaConsumer
+import org.apache.kafka.clients.consumer.{ConsumerRebalanceListener, KafkaConsumer}
+import org.apache.kafka.clients.consumer.internals.ConsumerCoordinator
 import org.apache.kafka.common.TopicPartition
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -30,8 +31,7 @@ class TestConsumer {
   @PostConstruct
   def post(): Unit = {
     new Thread(()=> {
-      consumer.subscribe(Collections.singleton("testkafka"))
-      //val toic  = new TopicPartition()
+      consumer.subscribe(Collections.singleton("testkafka"), new ConsumerRebalanceListenerT(consumer))
       while (true) {
         consumer.poll(Duration.ofSeconds(3)).forEach(f => {
           val topic = f.topic
@@ -61,11 +61,13 @@ class TestConsumer {
 
   }
   def resumeConsumer: Unit ={
-    consumer.resume(List(new TopicPartition("testkafka", 1),
+    consumer.resume(
+      List(
+      new TopicPartition("testkafka", 1),
       new TopicPartition("testkafka", 2),
       new TopicPartition("testkafka", 0),
     ).asJavaCollection)
-    consumer.seek(new TopicPartition("testkafka", 1), 2455)
+    consumer.seek(new TopicPartition("testkafka", 1), 2555)
     consumer.seek(new TopicPartition("testkafka", 0), 2935)
     consumer.seek(new TopicPartition("testkafka", 2), 2300)
   }
