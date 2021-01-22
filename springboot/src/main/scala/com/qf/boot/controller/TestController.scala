@@ -8,8 +8,10 @@ import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.core.KafkaTemplate
-import org.springframework.kafka.support.Acknowledgment
+import org.springframework.kafka.support.{Acknowledgment, SendResult}
+import org.springframework.util.concurrent.ListenableFuture
 import org.springframework.web.bind.annotation.{GetMapping, RestController}
+
 import scala.collection.JavaConverters._
 
 @RestController
@@ -22,9 +24,14 @@ class TestController {
   @GetMapping(Array("/testkafka")) def main1() = {
     var i = 0
 
-    while(i < 100){
+    while(i < 10){
       i +=1
-      kafkaTemplate.send("testkafka", "tessadasd" + i)
+      val senR: ListenableFuture[SendResult[String,String]] = kafkaTemplate.send("testkafka", "tessadasd" + i)
+      senR.addCallback( (v:SendResult[String,String])=>{
+        println(v)
+      },(f:Throwable)=>{
+        println(f)
+      })
     }
     "end"
   }

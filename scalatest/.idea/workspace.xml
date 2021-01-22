@@ -2,42 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c1c9b5-61f9-456b-9bfd-05e474cc8890" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/scalatest/META-INF/scalatest.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/scalatest/scalatest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/scalatest/scalatest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scalatest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/scalatest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ArrayElement.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/ArrayElement.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Element.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/Element.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LineElement.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/LineElement.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rational.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/Rational.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCase.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/TestCase.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCompanionObject.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/TestCompanionObject.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestDefult.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/TestDefult.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestMonad.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/TestMonad.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestPart.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/TestPart.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/covariance.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/covariance.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/covariance/QueueT.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/covariance/QueueT.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exactortest.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/exactortest.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testActor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testActor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testEqual.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testEqual.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testScalac.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testScalac.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testTrait/Admistrator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testTrait/Admistrator.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testTrait/BaseIntQueue.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testTrait/BaseIntQueue.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testTrait/DoubleTrait.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testTrait/DoubleTrait.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testTrait/FilterTrait.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testTrait/FilterTrait.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testTrait/IncrementTrait.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testTrait/IncrementTrait.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testTrait/IntQueue.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testTrait/IntQueue.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testTrait/ReadOnly.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testTrait/ReadOnly.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testTrait/TestPackage.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testTrait/TestPackage.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testTrait/TestTrait.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testTrait/TestTrait.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testTrait/Update.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testTrait/Update.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testTrait/We.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testTrait/We.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testexactor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/scala/testexactor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springboot/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../springboot/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springboot/src/main/scala/com/qf/boot/TestMain1.scala" beforeDir="false" afterPath="$PROJECT_DIR$/../springboot/src/main/scala/com/qf/boot/TestMain1.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springboot/src/main/scala/com/qf/boot/controller/TestController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/../springboot/src/main/scala/com/qf/boot/controller/TestController.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springboot/src/main/scala/com/qf/boot/service/TestConsumer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/../springboot/src/main/scala/com/qf/boot/service/TestConsumer.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -368,6 +333,7 @@
       <workItem from="1553844145110" duration="44000" />
       <workItem from="1609116685490" duration="51000" />
       <workItem from="1609307384438" duration="705000" />
+      <workItem from="1609726874686" duration="14000" />
     </task>
     <servers />
   </component>
