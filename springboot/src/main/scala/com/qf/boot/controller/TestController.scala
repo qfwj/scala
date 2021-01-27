@@ -18,7 +18,7 @@ class TestController {
   @Autowired
   var kafkaTemplate: KafkaTemplate[String, String] = null
 
-  @PostConstruct
+ // @PostConstruct
   @GetMapping(Array("/testkafka")) def main1() = {
     var i = 0
 
