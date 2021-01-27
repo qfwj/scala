@@ -4,7 +4,7 @@ import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
- * description:  
+ * description:   https://docs.scala-lang.org/overviews/core/futures.html#the-global-execution-context
  * date: 2021/1/22 9:21 
  * author: zhbo 
  */
