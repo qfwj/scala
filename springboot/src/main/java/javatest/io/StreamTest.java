@@ -1,4 +1,4 @@
-package javatest.file;
+package javatest.io;
 
 import sun.nio.ch.DirectBuffer;
 

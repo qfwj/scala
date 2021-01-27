@@ -1,11 +1,9 @@
-package javatest.file;
+package javatest.io;
 
 
 import sun.nio.ch.DirectBuffer;
-import sun.nio.ch.FileChannelImpl;
 
 import java.io.*;
-import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.ByteBuffer;

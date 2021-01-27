@@ -1,4 +1,4 @@
-package javatest.file.io;
+package javatest.io.io;
 
 public class Test2 {
 

@@ -13,6 +13,8 @@ public class QueueTest {
 
     public static void main(String[] args) throws Exception {
 
+
+
         LinkedTransferQueue queue = new LinkedTransferQueue();
 
         new Thread(){
@@ -76,7 +78,7 @@ public class QueueTest {
          * peek 返回队列首部
          */
         ArrayBlockingQueue arrayBlockingQueue = new ArrayBlockingQueue(12); //有界队列、线程安全、不能为null、数组实现,fair可选
-        LinkedBlockingQueue linkedBlockingQueue = new LinkedBlockingQueue();//有界可选、线程安全、不能为null、数组实现,fair可选
+        LinkedBlockingQueue linkedBlockingQueue = new LinkedBlockingQueue(12);//有界可选、线程安全、不能为null、数组实现,fair可选
         PriorityBlockingQueue priorityBlockingQueue = new PriorityBlockingQueue();//无界 线程安全  不能为null  数组 堆实现
     }
 

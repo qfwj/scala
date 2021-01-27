@@ -1,4 +1,4 @@
-package javatest.file;
+package javatest.io;
 
 import java.io.*;
 import java.net.HttpURLConnection;
