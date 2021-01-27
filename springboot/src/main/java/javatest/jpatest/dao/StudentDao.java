@@ -1,8 +1,8 @@
 package javatest.jpatest.dao;
 
+import javatest.jpatest.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
-import qf.javatest.jpatest.Student;
-import qf.javatest.jpatest.Teacher;
+
 
 /**
  * @Description: TODO

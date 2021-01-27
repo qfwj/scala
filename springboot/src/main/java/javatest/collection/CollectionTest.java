@@ -1,10 +1,8 @@
 package javatest.collection;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @Description: TODO
@@ -24,7 +22,11 @@ public class CollectionTest {
         it.remove();
         System.out.println(12);
 
+        Vector vector = new Vector();
 
+        CopyOnWriteArrayList copyOnWriteArrayList = new CopyOnWriteArrayList();
+
+        LinkedList linkedList = new LinkedList();
 
         LinkedHashSet set = new LinkedHashSet();
         set.add(12);

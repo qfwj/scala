@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 
-import static qf.javatest.algorithm.ListIml.initSingleList;
 
 public class KSortListMerge {
 

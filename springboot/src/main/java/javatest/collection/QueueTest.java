@@ -33,9 +33,9 @@ public class QueueTest {
 
 
        // testSyncQueue();
+        PriorityQueue priorityQueue = new PriorityQueue(12); //无界  不能为null 基于数组 堆
 
         DelayQueue delayQueue = new DelayQueue(); //无界、阻塞队列、线程安全、基于lock condition await signal、不能为null
-        PriorityQueue priorityQueue = new PriorityQueue(12); //无界  不能为null 基于数组 堆
 
         LinkedList linkedList = new LinkedList(); //双向队列 无界非线程安全
 

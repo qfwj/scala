@@ -1,8 +1,9 @@
 package javatest.fanxin;
 
-import qf.javatest.entity.Father;
-import qf.javatest.entity.GrandFather;
-import qf.javatest.entity.Son;
+
+import javatest.entity.Father;
+import javatest.entity.GrandFather;
+import javatest.entity.Son;
 
 import java.util.ArrayList;
 import java.util.List;

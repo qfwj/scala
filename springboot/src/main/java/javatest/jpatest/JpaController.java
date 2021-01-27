@@ -1,11 +1,12 @@
 package javatest.jpatest;
 
+import javatest.jpatest.dao.StudentDao;
+import javatest.jpatest.dao.TeacherDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import qf.javatest.jpatest.dao.StudentDao;
-import qf.javatest.jpatest.dao.TeacherDao;
+
 
 /**
  * @Description: TODO

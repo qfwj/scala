@@ -13,28 +13,8 @@ import java.util.concurrent.ScheduledExecutorService;
 public class ExcutorTest {
 
     public static void main(String[] args) throws Exception {
+        ForkJoinPool.commonPool().submit(()->{});
 
-//        fixed().execute(()-> {
-//            System.out.println(12);
-//        });
-        ExecutorService cache = cache();
-        cache.submit(()->{
-            System.out.println(12);
-        });
-        cache.execute(()->{
-            System.out.println(12);
-        });
-//        while (true) {
-//            cache.execute(()->{ try {
-//                System.out.println(Thread.currentThread());
-//                Thread.sleep(3000);
-//
-//            } catch (Exception e) {
-//
-//            }
-//            });
-//            Thread.sleep(1000);
-//        }
     }
      //   ScheduledExecutorService schedule = schedule();
 

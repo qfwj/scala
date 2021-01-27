@@ -3,6 +3,7 @@ package javatest.collection;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * @Description: TODO
@@ -13,8 +14,7 @@ public class MapTest {
 
     public static void main(String[] args) {
 
-        System.out.println(5&3 );
-        System.out.println(9&3 );
+
         HashMap hashMap = new HashMap(); //非线程安全、可以为null
         LinkedHashMap linkedHashMap = new LinkedHashMap();// afterNodeInsertion 实现LRU
         Hashtable hashtable = new Hashtable(); //线程安全 不能为null
@@ -25,6 +25,7 @@ public class MapTest {
         TreeMap map = new TreeMap(); //红黑树
 
         HashSet hashSet = new HashSet();
+        CopyOnWriteArraySet copyOnWriteArraySet = new CopyOnWriteArraySet();
         LinkedHashSet linkedHashSet = new LinkedHashSet();//按插入顺序
         TreeSet treeSet = new TreeSet(); //按小到大排序
         linkedHashSet.add(3);

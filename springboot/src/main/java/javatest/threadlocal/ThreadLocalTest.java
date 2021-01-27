@@ -1,6 +1,7 @@
 package javatest.threadlocal;
 
-import qf.javatest.reference.TestReference;
+
+import javatest.reference.TestReference;
 
 import java.lang.ref.WeakReference;
 
