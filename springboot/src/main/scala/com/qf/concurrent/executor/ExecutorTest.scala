@@ -1,4 +1,4 @@
-package com.qf.executor
+package com.qf.concurrent.executor
 
 import java.util.concurrent.{Executors, ThreadPoolExecutor, TimeUnit}
 
@@ -13,7 +13,7 @@ import scala.concurrent.duration._
  * date: 2020/12/30 14:14 <br>
  * author: zhbo <br>
  */
-object Executor extends App {
+object ExecutorTest extends App {
  val executors =   Executors.newFixedThreadPool(12).asInstanceOf[ThreadPoolExecutor]
   executors.setKeepAliveTime(5, TimeUnit.SECONDS)
   executors.allowCoreThreadTimeOut(true)

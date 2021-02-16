@@ -11,7 +11,13 @@ import java.util.concurrent.ScheduledExecutorService;
  * author: zhbo <br>
  */
 public class ExcutorTest {
-
+    /**
+     * 线程池执行过程：
+     * 当worker数小于corepool size时直接创建新的corepool size
+     * 执行完成后，通过queue.take获取新的task；
+     * 如果此时没有task要执行，则worker数量小于corepool size就take，大于就超时take
+     *  timed ? workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) : workQueue.take();
+     */
     public static void main(String[] args) throws Exception {
         ForkJoinPool.commonPool().submit(()->{});
 
