@@ -17,8 +17,8 @@ object TestGuava extends App {
         Set("", "", "dsd").asJava
 
       }
-    }
-    )
+    })
+  cache1.get("adsad")
   println(cache1)
   val cache: Cache[Any, Any] = CacheBuilder.newBuilder()
     .maximumSize(3)
@@ -26,6 +26,7 @@ object TestGuava extends App {
     .build(CacheLoader.from(() => {
       ""
     })).asInstanceOf[Cache[Any, Any]]
+
   cache.put(12, 13)
   cache.put(11, 13)
   cache.put(10, 13)

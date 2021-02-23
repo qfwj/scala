@@ -17,7 +17,7 @@ public class ForkJoinTest {
     public static void main(String[] args) {
         ForkJoinTask forkJoinTask = ForkJoinTask.adapt(() -> {
             try {
-                Thread.sleep(1111);
+                     Thread.sleep(11111);
                 return 12;
             } catch (Exception e) {
 
@@ -25,10 +25,19 @@ public class ForkJoinTest {
             return 11;
 
         });
-
-        forkJoinTask.join();
+        forkJoinTask.fork();
+       System.out.println(forkJoinTask.join());
         ForkJoinPool forkJoinPool = new ForkJoinPool(10);
-        ForkJoinTask<Integer> end1 = forkJoinPool.submit(() -> 12);
+        ForkJoinTask<Integer> end1 = forkJoinPool.submit(() ->{
+            try {
+                 Thread.sleep(11111);
+            return 12;
+        } catch (Exception e) {
+                return 12;
+        }});
+        System.out.println( end1.join());
+
+
         List<Callable<Integer>> runnables = new ArrayList<>();
         runnables.add(() -> 12);
         runnables.add(() -> 13);
