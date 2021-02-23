@@ -4,6 +4,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
 import scala.util.{Failure, Success}
+import scala.concurrent._
 
 /**
  * description:   https://docs.scala-lang.org/overviews/core/futures.html#the-global-execution-context
@@ -16,6 +17,7 @@ object TestFuture extends App {
     println(Thread.currentThread() + "" + 12)
     12
   }
+  ff map(f=>f+"sds")
   ff onComplete {
     case Failure(exception) => println(s"some Exception: ${exception}")
     case Success(r) => println(s"some result: ${r}")
