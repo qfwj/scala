@@ -72,6 +72,24 @@ class TestConsumer {
     ).asJavaCollection))
 
   }
+
+  def wakeUpConsumer: Unit ={
+    /**
+     * https://blog.csdn.net/CHS007chs/article/details/102899288
+     * 进行hook添加确保优雅关闭
+     *   consumer.wakeup 唯一可以使用外部线程执行的方法
+     * try // 主线程继续执行，以便可以关闭consumer，提交偏移量
+     *mainThread.join
+     * catch {
+     * case e: InterruptedException =>
+     *e.printStackTrace()
+     * }
+     *
+     */
+    consumer.wakeup
+
+  }
+
   def resumeConsumer: Unit ={
     consumer.resume(
       List(
