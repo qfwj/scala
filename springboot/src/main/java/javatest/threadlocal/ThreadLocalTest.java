@@ -3,6 +3,7 @@ package javatest.threadlocal;
 
 import javatest.reference.TestReference;
 
+import java.lang.ref.PhantomReference;
 import java.lang.ref.WeakReference;
 
 /**

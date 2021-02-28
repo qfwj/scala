@@ -10,6 +10,7 @@ import java.nio.ByteBuffer;
 public class TestBuffer {
 
     public static void main(String[] args) {
+
         ByteBuffer buffer = ByteBuffer.allocateDirect(6);
         byte[] bytes = {1,2,3,5};
         buffer.put(bytes);
