@@ -21,7 +21,7 @@ public class FutureTest {
         AtomicLong end = new AtomicLong(0);
        int i =1;
 //       while (i++<  100*1000){
-        future.thenAcceptAsync(f->  System.out.println(Thread.currentThread().getName() +": 111" )).whenComplete((f, t)->{
+        future.thenAcceptAsync(f->  System.out.println(Thread.currentThread().getName() +": 111" )).whenCompleteAsync((f, t)->{
                 end.set( System.currentTimeMillis());
            System.out.println(Thread.currentThread().getName() +": num : " );}).get();
       // };

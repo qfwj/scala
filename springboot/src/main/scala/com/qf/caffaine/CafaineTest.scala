@@ -22,6 +22,5 @@ object CafaineTest  extends  App {
       "dsad"
     }
   )
-  cafaineTest.get("")
 
 }
